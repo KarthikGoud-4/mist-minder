@@ -8,80 +8,80 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 44 35% 92%;
-    --foreground: 324 89% 18%;
+    --background: 193 75% 94%;
+    --foreground: 193 95% 9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 324 89% 18%;
+    --card-foreground: 193 95% 9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 324 89% 18%;
+    --popover-foreground: 193 95% 9%;
 
-    --primary: 324 89% 29%;
-    --primary-foreground: 44 35% 92%;
+    --primary: 193 70% 33%;
+    --primary-foreground: 193 75% 94%;
 
-    --secondary: 28 86% 64%;
-    --secondary-foreground: 324 89% 18%;
+    --secondary: 193 100% 50%;
+    --secondary-foreground: 193 95% 9%;
 
-    --muted: 44 14% 87%;
-    --muted-foreground: 324 20% 45%;
+    --muted: 193 20% 85%;
+    --muted-foreground: 193 30% 40%;
 
-    --accent: 8 91% 62%;
-    --accent-foreground: 324 89% 18%;
+    --accent: 329 83% 32%;
+    --accent-foreground: 193 75% 94%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 44 35% 92%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 44 14% 80%;
-    --input: 44 14% 80%;
-    --ring: 324 89% 29%;
+    --border: 193 30% 80%;
+    --input: 193 30% 85%;
+    --ring: 193 70% 33%;
 
     --radius: 1rem;
 
-    /* Vibrant color palette */
-    --coral: 8 91% 62%;
-    --light-gray: 44 14% 87%;
-    --magenta: 324 89% 29%;
-    --beige: 44 35% 92%;
-    --orange: 28 86% 64%;
+    /* Custom weather theme tokens */
+    --ocean-dark: 193 95% 9%;
+    --ocean-light: 193 75% 94%;
+    --ocean-medium: 193 70% 33%;
+    --magenta: 329 83% 32%;
+    --slate: 197 26% 54%;
     
-    --gradient-vibrant: linear-gradient(135deg, hsl(324 89% 29%), hsl(8 91% 62%));
-    --gradient-warm: linear-gradient(135deg, hsl(28 86% 64%), hsl(8 91% 62%));
+    --gradient-ocean: linear-gradient(135deg, hsl(193 70% 33%), hsl(193 100% 50%));
+    --gradient-sunset: linear-gradient(135deg, hsl(329 83% 32%), hsl(193 70% 33%));
     
-    --shadow-soft: 0 4px 20px -4px hsl(324 89% 29% / 0.15);
-    --shadow-glow: 0 0 30px hsl(8 91% 62% / 0.3);
+    --shadow-soft: 0 4px 20px -4px hsl(193 70% 33% / 0.15);
+    --shadow-glow: 0 0 30px hsl(193 100% 50% / 0.2);
     
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
-    --background: 324 89% 8%;
-    --foreground: 44 35% 92%;
+    --background: 193 95% 9%;
+    --foreground: 193 75% 94%;
 
-    --card: 324 89% 12%;
-    --card-foreground: 44 35% 92%;
+    --card: 193 85% 12%;
+    --card-foreground: 193 75% 94%;
 
-    --popover: 324 89% 8%;
-    --popover-foreground: 44 35% 92%;
+    --popover: 193 85% 12%;
+    --popover-foreground: 193 75% 94%;
 
-    --primary: 324 89% 45%;
-    --primary-foreground: 44 35% 92%;
+    --primary: 193 100% 50%;
+    --primary-foreground: 193 95% 9%;
 
-    --secondary: 28 86% 64%;
-    --secondary-foreground: 324 89% 8%;
+    --secondary: 193 70% 25%;
+    --secondary-foreground: 193 75% 94%;
 
-    --muted: 324 30% 20%;
-    --muted-foreground: 44 20% 70%;
+    --muted: 193 40% 20%;
+    --muted-foreground: 193 30% 65%;
 
-    --accent: 8 91% 62%;
-    --accent-foreground: 44 35% 92%;
+    --accent: 329 83% 40%;
+    --accent-foreground: 193 75% 94%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 44 35% 92%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 193 75% 94%;
 
-    --border: 324 30% 25%;
-    --input: 324 30% 25%;
-    --ring: 324 89% 45%;
+    --border: 193 40% 20%;
+    --input: 193 40% 20%;
+    --ring: 193 100% 50%;
   }
 }
 
