@@ -134,9 +134,6 @@ const Index = () => {
           </div>
         </Card>
 
-        <footer className="mt-6 text-center text-xs text-muted-foreground animate-fade-in">
-          Powered by Lovable AI & OpenWeather API
-        </footer>
       </div>
     </div>
   );
