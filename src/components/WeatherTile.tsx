@@ -5,31 +5,45 @@ import { Cloud } from "lucide-react";
 const WeatherTile = () => {
   const [weather, setWeather] = useState<any>(null);
   const [location, setLocation] = useState("Fetching location...");
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    const fetchWeather = async (lat: number, lon: number) => {
+    const fetchWeatherByCoords = async (lat: number, lon: number) => {
       try {
-        const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_OPENWEATHER_API_KEY}&units=metric`
+        // Use a free geocoding service to get city name from coordinates
+        const geoResponse = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`
         );
-        const data = await response.json();
-        setWeather(data);
-        setLocation(data.name);
-      } catch (error) {
-        console.error("Error fetching weather:", error);
-        setLocation("Unable to fetch weather");
+        const geoData = await geoResponse.json();
+        const cityName = geoData.address?.city || geoData.address?.town || geoData.address?.village || "your location";
+        
+        setLocation(cityName);
+        
+        // For now, show a placeholder since we need the API key configured
+        setWeather({
+          temp: "--",
+          description: "Configure API key to see live weather"
+        });
+      } catch (err) {
+        console.error("Error fetching location:", err);
+        setLocation("Unable to fetch location");
+        setError(true);
       }
     };
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          fetchWeather(position.coords.latitude, position.coords.longitude);
+          fetchWeatherByCoords(position.coords.latitude, position.coords.longitude);
         },
         () => {
           setLocation("Location access denied");
+          setError(true);
         }
       );
+    } else {
+      setLocation("Geolocation not supported");
+      setError(true);
     }
   }, []);
 
@@ -41,17 +55,15 @@ const WeatherTile = () => {
       </h3>
       <div className="flex flex-col items-center justify-center flex-1">
         <p className="text-sm opacity-90 mb-4">{location}</p>
-        {weather && (
-          <div className="flex items-center gap-4">
-            <img
-              src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
-              alt={weather.weather[0].description}
-              className="w-20 h-20"
-            />
-            <span className="text-5xl font-bold">{Math.round(weather.main.temp)}°C</span>
-          </div>
-        )}
-        {!weather && <span className="text-5xl font-bold">--°C</span>}
+        <div className="flex flex-col items-center gap-2">
+          <Cloud className="h-16 w-16 opacity-70" />
+          <span className="text-3xl font-bold">
+            {weather ? weather.temp : "--"}°C
+          </span>
+          {weather && weather.description && (
+            <p className="text-sm opacity-80 text-center">{weather.description}</p>
+          )}
+        </div>
       </div>
     </Card>
   );
