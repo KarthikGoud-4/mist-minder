@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { Card } from "@/components/ui/card";
-import { Cloud, Sparkles } from "lucide-react";
+import { Cloud, Sparkles, ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import ChatMessage from "@/components/ChatMessage";
 import ChatInput from "@/components/ChatInput";
+import LandingPage from "@/components/LandingPage";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
@@ -13,6 +15,7 @@ interface Message {
 }
 
 const Index = () => {
+  const [showChat, setShowChat] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
@@ -82,23 +85,38 @@ const Index = () => {
     }
   };
 
+  if (!showChat) {
+    return <LandingPage onStartChat={() => setShowChat(true)} />;
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-secondary/10 p-4 md:p-8">
       <div className="mx-auto max-w-4xl">
-        <header className="mb-8 text-center animate-fade-in">
-          <div className="inline-flex items-center gap-3 mb-4">
-            <div className="relative">
-              <Cloud className="h-12 w-12 text-primary animate-pulse-glow" />
-              <Sparkles className="h-5 w-5 text-accent absolute -top-1 -right-1" />
+        <div className="mb-6 animate-fade-in">
+          <Button
+            variant="ghost"
+            onClick={() => setShowChat(false)}
+            className="mb-4"
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Home
+          </Button>
+          
+          <header className="text-center">
+            <div className="inline-flex items-center gap-3 mb-4">
+              <div className="relative">
+                <Cloud className="h-12 w-12 text-primary animate-pulse" />
+                <Sparkles className="h-5 w-5 text-accent absolute -top-1 -right-1" />
+              </div>
             </div>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent mb-2">
-            Weather Chat
-          </h1>
-          <p className="text-muted-foreground text-sm md:text-base">
-            Get real-time weather updates with AI-powered natural language understanding
-          </p>
-        </header>
+            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent mb-2">
+              Weather Chat
+            </h1>
+            <p className="text-muted-foreground text-sm md:text-base">
+              Get real-time weather updates with AI-powered natural language understanding
+            </p>
+          </header>
+        </div>
 
         <Card className="overflow-hidden border-primary/20 shadow-lg">
           <div className="h-[500px] md:h-[600px] flex flex-col">
@@ -133,7 +151,6 @@ const Index = () => {
             </div>
           </div>
         </Card>
-
       </div>
     </div>
   );

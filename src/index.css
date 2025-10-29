@@ -94,3 +94,18 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .tile-container {
+    @apply flex flex-wrap justify-center gap-6 px-4;
+  }
+
+  .tile {
+    @apply w-full sm:w-[300px] min-h-[200px] rounded-xl shadow-lg p-6 
+           flex flex-col transition-all duration-200;
+  }
+
+  .tile-cta {
+    @apply block mt-4 font-bold;
+  }
+}
